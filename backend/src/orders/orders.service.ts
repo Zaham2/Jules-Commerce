@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Order, OrderStatus } from './entities/order.entity';
+import { Order } from './entities/order.entity';
 import { OrderItem } from './entities/order-item.entity';
 import { User } from 'src/users/entities/user.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -59,7 +59,7 @@ export class OrdersService {
         price: item.product.price,
       })),
       total,
-      status: OrderStatus.COMPLETED,
+      status: 'completed',
       stripePaymentIntentId: paymentIntent.id,
     });
 

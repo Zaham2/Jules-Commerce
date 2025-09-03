@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface AuthFormProps {
-  onSubmit: (data: any) => void;
+  onSubmit: (data: { email: string; password: string }) => void;
   buttonText: string;
 }
 
