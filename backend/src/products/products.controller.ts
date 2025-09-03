@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, UnauthorizedException } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -17,7 +17,7 @@ export class ProductsController {
   async create(@Body() createProductDto: CreateProductDto, @Request() req) {
     const user = await this.usersService.findOne(req.user.userId);
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new UnauthorizedException();
     }
     return this.productsService.create(createProductDto, user);
   }
